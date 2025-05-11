@@ -1,0 +1,23 @@
+# lightningwand.sk
+# A blaze rod that summons lightning when right-clicked in main hand
+# Author: YourName
+# Minecraft Server: Requires Skript plugin
+
+options:
+    itemName: &6Lightning Wand
+    permission: lightningwand.use
+
+on right click:
+    if player is holding a blaze rod:
+        if name of player's tool is "{@itemName}":
+            if player has permission "{@permission}":
+                strike lightning at target block of player
+                send "&eYou called lightning!" to player
+            else:
+                send "&cYou don't have permission to use the Lightning Wand!" to player
+
+command /getlightningwand:
+    permission: {@permission}
+    trigger:
+        give player a blaze rod named "{@itemName}" with lore "&7Right-click to summon lightning"
+        send "&aYou have been given the &6Lightning wand&a!"
